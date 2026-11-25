@@ -42,6 +42,9 @@ python3 -m osm_tiles.pipeline finland.osm \
 tippecanoe -o finland.mbtiles --layer=all out/finland/*/*/*/*.geojson
 ```
 
+`--manifest PATH` writes per-shard checksums so a refresh can be diffed with
+`osm_tiles.manifest.verify` (see `docs/shard-manifest.md`).
+
 `--stats` prints per-layer feature counts and the largest tile fan-out so that
 oversized features can be spotted before tiling.
 
