@@ -17,7 +17,7 @@ from collections import Counter
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from . import config, geometry
+from . import config, geometry, manifest
 
 
 @dataclass
@@ -185,6 +185,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--out", required=True, help="output directory for tile shards")
     parser.add_argument("--max-zoom", type=int, default=14)
     parser.add_argument("--bbox", help="west,south,east,north clip before tiling")
+    parser.add_argument("--manifest", help="write a checksum manifest of the shard tree")
     parser.add_argument("--stats", action="store_true", help="print per-layer counts")
     args = parser.parse_args(argv)
 
@@ -195,6 +196,8 @@ def main(argv: list[str] | None = None) -> int:
     buckets = classify(features, layers)
     plan, worst = plan_tiles(buckets, layers, args.max_zoom)
     written = write_tiles(plan, args.out, layers)
+    if args.manifest:
+        manifest.write(args.out, args.manifest)
 
     if args.stats:
         for name, items in buckets.items():
