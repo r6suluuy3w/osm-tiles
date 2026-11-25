@@ -1,0 +1,34 @@
+{
+  "layers": [
+    {
+      "name": "roads",
+      "selectors": {"highway": "*"},
+      "min_zoom": 6,
+      "max_zoom": 14
+    },
+    {
+      "name": "water",
+      "selectors": {"natural": "water"},
+      "min_zoom": 6,
+      "max_zoom": 12
+    },
+    {
+      "name": "waterway",
+      "selectors": {"waterway": "*"},
+      "min_zoom": 8,
+      "max_zoom": 14
+    },
+    {
+      "name": "buildings",
+      "selectors": {"building": "*"},
+      "min_zoom": 13,
+      "max_zoom": 14
+    },
+    {
+      "name": "places",
+      "selectors": {"place": "*"},
+      "min_zoom": 6,
+      "max_zoom": 10
+    }
+  ]
+}
